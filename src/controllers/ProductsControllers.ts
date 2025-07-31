@@ -18,8 +18,20 @@ class ProductsController {
   create(request: Request, response: Response) {
     const { name, price } = request.body;
 
-    if (!name || !price) {
-      throw new AppError("Nome e preço do produto são obrigatórios");
+    if (!name) {
+      throw new AppError("Nome do produto é obrigatório");
+    }
+
+    if (name.trim().length < 6) {
+      throw new AppError("Nome do produto precisa pelo menos 6 caracteres");
+    }
+
+    if (!price) {
+      throw new AppError("Preço do produto é obrigatório");
+    }
+
+    if (price < 0) {
+      throw new AppError("Preço do produto precisa ser maior que 0");
     }
 
     // throw new Error("Erro ao tentar criar um produto!");
