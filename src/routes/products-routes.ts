@@ -7,6 +7,7 @@ const productsController = new ProductsController();
 
 productsRoutes.get("/", productsController.index);
 
+// Middleware local em uma rota especifica "myMiddleware"
 productsRoutes.post("/", myMiddleware, productsController.create);
 
 export { productsRoutes };

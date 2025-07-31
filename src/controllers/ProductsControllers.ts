@@ -12,7 +12,7 @@ class ProductsController {
   index(request: Request, response: Response) {
     const { page, limit } = request.query;
 
-    response.json(`Pagina ${page ?? 1} de ${limit ?? 10} `);
+    response.send(`Pagina ${page ?? 1} de ${limit ?? 10}`);
   }
   create(request: Request, response: Response) {
     const { name, price } = request.body;
