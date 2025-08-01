@@ -17,23 +17,28 @@ class ProductsController {
     response.send(`Pagina ${page ?? 1} de ${limit ?? 10}`);
   }
   create(request: Request, response: Response) {
-    const { name, price } = request.body;
+    const bodySchema = z.object({
+      name: z.string(),
+      price: z.number(),
+    });
 
-    if (!name) {
-      throw new AppError("Nome do produto é obrigatório");
-    }
+    const { name, price } = bodySchema.parse(request.body);
 
-    if (name.trim().length < 6) {
-      throw new AppError("Nome do produto precisa pelo menos 6 caracteres");
-    }
+    // if (!name) {
+    //   throw new AppError("Nome do produto é obrigatório");
+    // }
 
-    if (!price) {
-      throw new AppError("Preço do produto é obrigatório");
-    }
+    // if (name.trim().length < 6) {
+    //   throw new AppError("Nome do produto precisa pelo menos 6 caracteres");
+    // }
 
-    if (price < 0) {
-      throw new AppError("Preço do produto precisa ser maior que 0");
-    }
+    // if (!price) {
+    //   throw new AppError("Preço do produto é obrigatório");
+    // }
+
+    // if (price < 0) {
+    //   throw new AppError("Preço do produto precisa ser maior que 0");
+    // }
 
     // throw new Error("Erro ao tentar criar um produto!");
     // throw new AppError("Erro ao tentar criar um produto!");
